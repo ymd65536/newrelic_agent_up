@@ -1,0 +1,4 @@
+FROM --platform=linux/x86_64 amazonlinux:2023.4.20240611.0
+ENV NR_LICENSE_KEY=''
+RUN curl -o /etc/yum.repos.d/newrelic-infra.repo https://download.newrelic.com/infrastructure_agent/linux/yum/amazonlinux/2023/x86_64/newrelic-infra.repo && yum -q makecache -y --disablerepo='*' --enablerepo='newrelic-infra' && yum install -y newrelic-infra && yum clean all
+COPY newrelic-infra.yml /etc/newrelic-infra.yml
